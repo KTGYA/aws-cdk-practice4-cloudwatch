@@ -18,7 +18,7 @@ jobs:
           fetch-depth: 0 # 履歴全体をスキャンするため
 
       - name: Run gitleaks
-        uses: gitleaks/gitleaks-action@v2
+        uses: gitleaks/gitleaks-action@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # 個人/公開リポジトリは無料。Organization では GITLEAKS_LICENSE が必要な場合あり。
