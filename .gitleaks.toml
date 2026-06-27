@@ -1,0 +1,19 @@
+# gitleaks 設定（v8 系）
+# シークレット（AWSキー・トークン等）がコミット/push されるのを検出する。
+
+title= "cdk-monitoring gitleaks config"
+
+[extend]
+# gitleaks 組み込みの標準ルールを使う
+useDefault = true
+
+# 誤検知を除外したい場合はここに allowlist を追加する。
+# 例: テスト用のダミー値やドキュメント中のサンプルを除外
+# [[allowlist]]
+# description = "ドキュメントのサンプル値を除外"
+# paths = [
+#   '''README\.md''',
+# ]
+# regexes = [
+#   '''EXAMPLE_DUMMY_VALUE''',
+# ]

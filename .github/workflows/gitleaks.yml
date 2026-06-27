@@ -1,0 +1,24 @@
+name: gitleaks
+
+# push / PR のたびに、履歴全体を対象にシークレットスキャンを実行する。
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (full history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 履歴全体をスキャンするため
+
+      - name: Run gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # 個人/公開リポジトリは無料。Organization では GITLEAKS_LICENSE が必要な場合あり。

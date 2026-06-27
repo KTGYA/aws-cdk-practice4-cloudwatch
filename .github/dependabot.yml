@@ -1,0 +1,14 @@
+version: 2
+updates:
+  # npm 依存（aws-cdk-lib 等）の脆弱性検知・自動更新 PR
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+
+  # GitHub Actions 自体の更新（サプライチェーン対策。使っている action を最新に保つ）
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"

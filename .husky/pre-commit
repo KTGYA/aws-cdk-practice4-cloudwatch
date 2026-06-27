@@ -1,0 +1,13 @@
+# コミット前にステージ済みの変更へ gitleaks を実行し、シークレット混入を検出する。
+# husky v9 形式（boilerplate 不要）。
+
+# gitleaks がインストールされていない環境ではスキップ（CI 側でも検査するため）
+if ! command -v gitleaks >/dev/null 2>&1; then
+  echo "gitleaks not installed; skipping local secret scan (CI will still scan)."
+  exit 0
+fi
+
+# ステージ済みの差分だけをスキャン。検出されたらコミットを中断する。
+gitleaks git --staged --redact -v
+# gitleaks のバージョンによっては上が非推奨の場合あり。その際は次に置き換える:
+# gitleaks protect --staged --redact -v

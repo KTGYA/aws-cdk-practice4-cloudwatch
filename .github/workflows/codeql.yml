@@ -1,0 +1,29 @@
+name: CodeQL
+
+# コードの脆弱性をGitHubが静的解析する（公開リポジトリは無料）。
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  schedule:
+    - cron: "0 0 * * 1" # 毎週月曜に定期スキャン
+
+permissions:
+  contents: read
+  security-events: write # 検出結果を Security タブに出すため
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript-typescript
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3

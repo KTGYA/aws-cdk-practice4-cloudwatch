@@ -6,3 +6,25 @@ node_modules
 # CDK asset staging directory
 .cdk.staging
 cdk.out
+
+# misc
+*.log
+.DS_Store
+
+# --- security: keep secrets out of the repo ---
+# local env / dotenv files
+.env
+.env.*
+# private keys / certificates
+*.pem
+*.key
+*.p12
+*.pfx
+# AWS credentials (should live in ~/.aws, never in the repo)
+.aws/
+credentials
+
+# cdk.context.json caches account / VPC / AMI lookups.
+# 本構成ではドメイン/ゾーン情報を環境変数で渡し fromLookup を避けているが、
+# 念のため除外してアカウントID等の流出を防ぐ。
+cdk.context.json
