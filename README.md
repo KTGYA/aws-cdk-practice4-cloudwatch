@@ -151,4 +151,4 @@ cdk deploy --all -c alarmEmail=you@example.com
 - **CloudFront→ALB の HTTPS には独自ドメインが必須。** ALB 既定DNS (`*.elb.amazonaws.com`)
   には公開証明書を発行できないため。環境変数3つを指定しない場合は HTTP にフォールバックする。
 - **`{{resolve:secretsmanager:...}}` 動的参照の対応可否は deploy 時に最終確認。** CloudFront
-  カスタムヘッダー / ALB リスナー条件での動的参照が万一弾かれた場合は、参照方法の見直しが必要。
+  カスタムヘッダー / ALB リスナー条件での動的参照が万一弾かれた場合、参照方法の見直しが必要。
